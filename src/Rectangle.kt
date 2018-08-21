@@ -2,7 +2,6 @@ import java.awt.Color
 import java.awt.Graphics
 import java.io.PrintWriter
 import java.util.Scanner
-import sun.swing.SwingUtilities2.drawRect
 
 
 class Rectangle : Shape {
@@ -43,9 +42,9 @@ class Rectangle : Shape {
         }
     }
 
-    override fun Output(pw: PrintWriter) {
+    override fun output(pw: PrintWriter) {
         pw.print("R ")
-        super.Output(pw)
+        super.output(pw)
         pw.println()
     }
 

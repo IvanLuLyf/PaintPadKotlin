@@ -15,7 +15,7 @@ class MainWindow : JFrame() {
         title = "画图"
         if (panelCanvas.hasChange) {
             if (JOptionPane.showConfirmDialog(this, "是否保存修改?") == JOptionPane.OK_OPTION) {
-                saveFile.actionPerformed(null);
+                saveFile.actionPerformed(null)
             }
         }
         panelCanvas.newFile()
@@ -24,7 +24,7 @@ class MainWindow : JFrame() {
     private val openFile = ActionListener {
         if (panelCanvas.hasChange) {
             if (JOptionPane.showConfirmDialog(this, "是否保存修改?") == JOptionPane.OK_OPTION) {
-                saveFile.actionPerformed(null);
+                saveFile.actionPerformed(null)
             }
         }
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -45,10 +45,17 @@ class MainWindow : JFrame() {
     private val exit = ActionListener {
         if (panelCanvas.hasChange) {
             if (JOptionPane.showConfirmDialog(this, "是否保存修改?") == JOptionPane.OK_OPTION) {
-                saveFile.actionPerformed(null);
+                saveFile.actionPerformed(null)
             }
         }
         dispose()
+    }
+
+    private val selectBackgroundColor = ActionListener {
+        val color = JColorChooser.showDialog(this, "选择背景颜色", panelCanvas.background)
+        if (color != null) {
+            panelCanvas.background = color
+        }
     }
 
     private val selectLineColor = ActionListener {
@@ -59,7 +66,7 @@ class MainWindow : JFrame() {
         }
     }
 
-    private var selectFillColor = ActionListener {
+    private val selectFillColor = ActionListener {
         val color = JColorChooser.showDialog(this, "选择填充颜色", btnFillColor.background)
         if (color != null) {
             btnFillColor.background = (color)
@@ -67,7 +74,7 @@ class MainWindow : JFrame() {
         }
     }
 
-    private var selectFillColor2 = ActionListener {
+    private val selectFillColor2 = ActionListener {
         val color = JColorChooser.showDialog(this, "选择填充颜色", btnFillColor2.background)
         if (color != null) {
             btnFillColor2.background = (color)
@@ -119,6 +126,13 @@ class MainWindow : JFrame() {
             add(JMenuItem("置底").apply { addActionListener { panelCanvas.goBottom() } })
             add(JMenuItem("上移").apply { addActionListener { panelCanvas.goUp() } })
             add(JMenuItem("下移").apply { addActionListener { panelCanvas.goDown() } })
+        })
+        add(JMenu("格式").apply {
+            add(JMenuItem("线条宽度").apply { addActionListener(setLineWidth) })
+            add(JMenuItem("背景颜色").apply { addActionListener(selectBackgroundColor) })
+            add(JMenuItem("线条颜色").apply { addActionListener(selectLineColor) })
+            add(JMenuItem("填充颜色").apply { addActionListener(selectFillColor) })
+            add(JMenuItem("填充颜色2").apply { addActionListener(selectFillColor2) })
         })
         add(JMenu("帮助").apply {
             add(JMenuItem("关于").apply { addActionListener(aboutProgram) })

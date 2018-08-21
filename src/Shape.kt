@@ -117,31 +117,31 @@ open class Shape {
     }
 
     protected fun initFill(g: Graphics, left: Int, top: Int, width: Int, height: Int): Boolean {
-        if (fillStyle == 0) {
-            return false
-        } else if (fillStyle == 1) {
-            g.color = fillColor
-        } else if (fillStyle > 1) {
-            var paint: Paint? = null
-            when (fillStyle) {
-                2 // 水平
-                -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor, left.toFloat(), (top + height).toFloat(), fillColor2)
-                3 // 水平反
-                -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor2, left.toFloat(), (top + height).toFloat(), fillColor)
-                4 // 垂直
-                -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor, (left + width).toFloat(), top.toFloat(), fillColor2)
-                5 // 垂直反
-                -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor2, (left + width).toFloat(), top.toFloat(), fillColor)
-                6 // 左上右下
-                -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor, (left + width).toFloat(), (top + height).toFloat(), fillColor2)
-                7 // 左上右下反
-                -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor2, (left + width).toFloat(), (top + height).toFloat(), fillColor)
-                8 // 左下右上
-                -> paint = GradientPaint(left.toFloat(), (top + height).toFloat(), fillColor, (left + width).toFloat(), top.toFloat(), fillColor2)
-                9 // 左下右上反
-                -> paint = GradientPaint(left.toFloat(), (top + height).toFloat(), fillColor2, (left + width).toFloat(), top.toFloat(), fillColor)
+        when {
+            fillStyle == 0 -> return false
+            fillStyle == 1 -> g.color = fillColor
+            fillStyle > 1 -> {
+                var paint: Paint? = null
+                when (fillStyle) {
+                    2 // 水平
+                    -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor, left.toFloat(), (top + height).toFloat(), fillColor2)
+                    3 // 水平反
+                    -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor2, left.toFloat(), (top + height).toFloat(), fillColor)
+                    4 // 垂直
+                    -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor, (left + width).toFloat(), top.toFloat(), fillColor2)
+                    5 // 垂直反
+                    -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor2, (left + width).toFloat(), top.toFloat(), fillColor)
+                    6 // 左上右下
+                    -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor, (left + width).toFloat(), (top + height).toFloat(), fillColor2)
+                    7 // 左上右下反
+                    -> paint = GradientPaint(left.toFloat(), top.toFloat(), fillColor2, (left + width).toFloat(), (top + height).toFloat(), fillColor)
+                    8 // 左下右上
+                    -> paint = GradientPaint(left.toFloat(), (top + height).toFloat(), fillColor, (left + width).toFloat(), top.toFloat(), fillColor2)
+                    9 // 左下右上反
+                    -> paint = GradientPaint(left.toFloat(), (top + height).toFloat(), fillColor2, (left + width).toFloat(), top.toFloat(), fillColor)
+                }
+                (g as Graphics2D).paint = paint
             }
-            (g as Graphics2D).paint = paint
         }
         return true
     }
@@ -167,7 +167,7 @@ open class Shape {
         g.drawRect(x - 3, y - 3, 7, 7)
     }
 
-    protected fun drawSmallRnd(g: Graphics, x: Int, y: Int) {
+    private fun drawSmallRnd(g: Graphics, x: Int, y: Int) {
         g.color = Color.BLUE
         g.fillOval(x - 4, y - 4, 9, 9)
         g.color = Color.BLACK
@@ -179,7 +179,7 @@ open class Shape {
                 + "},Width : " + width.toString() + ",Points : " + points.toString() + "}")
     }
 
-    open fun Output(pw: PrintWriter) {
+    open fun output(pw: PrintWriter) {
         pw.printf("%d %d %d %d %d %d %d ", startPoint.x, startPoint.y, endPoint.x, endPoint.y, width,
                 lineColor.rgb, fillStyle)
         if (fillStyle > 0) {

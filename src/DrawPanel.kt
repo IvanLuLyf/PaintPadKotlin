@@ -12,7 +12,7 @@ import javax.swing.JPopupMenu
 import javax.swing.JSeparator
 
 
-class DrawPanel() : JPanel() {
+class DrawPanel : JPanel() {
 
     private var shapes: Vector<Shape> = Vector()
 
@@ -114,8 +114,8 @@ class DrawPanel() : JPanel() {
         override fun mousePressed(e: MouseEvent) {
             val x = e.x
             val y = e.y
-            preX = x;
-            preY = y;
+            preX = x
+            preY = y
             when (type) {
                 NONE -> {
                     shapeSelect?.selected = false
@@ -190,7 +190,7 @@ class DrawPanel() : JPanel() {
         printWriter.printf("%d %d ", width, height)
         printWriter.println(background.rgb)
         for (s in shapes) {
-            s.Output(printWriter)
+            s.output(printWriter)
         }
         printWriter.close()
     }

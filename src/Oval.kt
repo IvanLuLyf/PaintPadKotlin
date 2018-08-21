@@ -5,7 +5,7 @@ import java.util.Scanner
 
 class Oval : Shape {
 
-    constructor(oval: Oval) : super(oval) {}
+    constructor(oval: Oval) : super(oval)
 
     constructor(c: Color, width: Int, x1: Int, y1: Int, x2: Int, y2: Int) : super(c, width, x1, y1, x2, y2)
 
@@ -60,9 +60,9 @@ class Oval : Shape {
         }
     }
 
-    override fun Output(pw: PrintWriter) {
+    override fun output(pw: PrintWriter) {
         pw.print("O ")
-        super.Output(pw)
+        super.output(pw)
         pw.println()
     }
 

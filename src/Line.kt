@@ -14,9 +14,9 @@ class Line : Shape {
         super.draw(g)
         g.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y)
         if (selected) {
-            g.color = Color.BLACK;
-            drawSmallRec(g, startPoint.x, startPoint.y);
-            drawSmallRec(g, endPoint.x, endPoint.y);
+            g.color = Color.BLACK
+            drawSmallRec(g, startPoint.x, startPoint.y)
+            drawSmallRec(g, endPoint.x, endPoint.y)
         }
     }
 
@@ -29,9 +29,9 @@ class Line : Shape {
         return d < 3
     }
 
-    override fun Output(pw: PrintWriter) {
+    override fun output(pw: PrintWriter) {
         pw.print("L ")
-        super.Output(pw)
+        super.output(pw)
         pw.println()
     }
 
